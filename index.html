@@ -257,53 +257,6 @@
     max-width: 560px;
     box-shadow: 0 1px 2px rgba(15,27,69,0.06), 0 8px 20px -12px rgba(15,27,69,0.25);
   }
-  .form-row { margin-bottom: 16px; }
-  .form-row label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-  .form-row .req, .form-row .opt {
-    font-size: 10.5px;
-    font-weight: 600;
-    margin-left: 6px;
-    padding: 1px 7px;
-    border-radius: 20px;
-  }
-  .form-row .req { background: rgba(214,69,69,0.1); color: #b23a3a; }
-  .form-row .opt { background: rgba(107,112,128,0.12); color: var(--muted); }
-  .form-row input[type="text"],
-  .form-row select,
-  .form-row textarea {
-    width: 100%;
-    font-size: 14px;
-    font-family: inherit;
-    padding: 9px 11px;
-    border: 1px solid #d7dce8;
-    border-radius: 8px;
-    background: #fbfbfc;
-    color: var(--ink);
-    resize: vertical;
-  }
-  .form-row input[type="text"]:focus,
-  .form-row select:focus,
-  .form-row textarea:focus {
-    outline: 2px solid var(--blue-accent);
-    outline-offset: 1px;
-  }
-  #f-generate, #f-copy {
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    background: var(--navy);
-    border: none;
-    border-radius: 8px;
-    padding: 11px 20px;
-    cursor: pointer;
-  }
-  #f-generate:hover, #f-copy:hover { background: var(--navy-mid); }
 
   .cta-button {
     display: inline-block;
@@ -318,24 +271,6 @@
     cursor: pointer;
   }
   .cta-button:hover { background: #2f4bc4; }
-  #f-output {
-    background: var(--navy-deep);
-    color: #dfe6f5;
-    font-size: 12.5px;
-    line-height: 1.6;
-    padding: 14px;
-    border-radius: 10px;
-    overflow-x: auto;
-    white-space: pre;
-    margin: 0 0 12px;
-  }
-  #f-copied {
-    display: inline-block;
-    margin-left: 10px;
-    color: var(--blue-accent);
-    font-size: 13px;
-    font-weight: 700;
-  }
 
   footer {
     text-align: center;
@@ -365,7 +300,6 @@
   <a href="#clearance">クリアランス</a>
   <a href="#freekick">フリーキック</a>
   <a href="#send-video">動画を送る</a>
-  <a href="#add-form">＋ パターンを追加</a>
 </nav>
 
 <main>
@@ -407,61 +341,6 @@
       <a class="cta-button" href="https://forms.gle/6DJ4TptLAtz4M92E8" target="_blank" rel="noopener">
         動画を送るフォームを開く ↗
       </a>
-    </div>
-  </section>
-
-  <section class="category" id="add-form">
-    <div class="cat-head"><span class="cat-num">06</span><h2>パターンを追加</h2></div>
-    <p class="cat-desc">
-      ここで入力すると、<code>data.js</code> にそのまま貼り付けられるコードが自動でできます。
-      画像・動画ファイルは、あらかじめ他のファイルと同じ場所（GitHubリポジトリの一番上の階層）に
-      アップロードしておいてください。
-    </p>
-
-    <div class="form-card">
-      <div class="form-row">
-        <label for="f-category">カテゴリ</label>
-        <select id="f-category">
-          <option value="kickin">キックイン</option>
-          <option value="corner">コーナーキック</option>
-          <option value="clearance">クリアランス</option>
-          <option value="freekick">フリーキック</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <label for="f-name">パターン名<span class="req">必須</span></label>
-        <input type="text" id="f-name" placeholder="例：横3">
-      </div>
-
-      <div class="form-row">
-        <label for="f-tag">シリーズ・タグ<span class="opt">任意</span></label>
-        <input type="text" id="f-tag" placeholder="例：①シリーズ（空欄でもOK）">
-      </div>
-
-      <div class="form-row">
-        <label for="f-image">図解画像のファイル名<span class="req">必須</span></label>
-        <input type="text" id="f-image" placeholder="例：kickin-yoko3.jpg">
-      </div>
-
-      <div class="form-row">
-        <label for="f-videos">動画のファイル名<span class="opt">任意・複数可</span></label>
-        <textarea id="f-videos" rows="3" placeholder="1行に1ファイルずつ入力&#10;例：&#10;kickin-yoko3-1.mp4&#10;kickin-yoko3-2.mp4"></textarea>
-      </div>
-
-      <div class="form-row">
-        <label for="f-memo">メモ<span class="opt">任意・複数可</span></label>
-        <textarea id="f-memo" rows="4" placeholder="1行に1項目ずつ入力&#10;例：&#10;全部ファー狙い。&#10;相手がゾーンのとき使える。"></textarea>
-      </div>
-
-      <button type="button" id="f-generate">コードを作成する</button>
-
-      <div id="f-output-wrap" style="display:none;">
-        <p class="video-label" style="margin-top:18px;">↓ このコードを data.js の該当カテゴリ配列にコピーして貼り付けてください</p>
-        <pre id="f-output"></pre>
-        <button type="button" id="f-copy">コピーする</button>
-        <p id="f-copied" style="display:none;">コピーしました。</p>
-      </div>
     </div>
   </section>
 </main>
@@ -533,85 +412,6 @@
     links.forEach((l, i) => l.classList.toggle('active', i === idx));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-
-  // --- パターン追加フォーム：貼り付け用コードの自動生成 ---
-  function jsEscape(str) {
-    return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-  }
-
-  function linesFromTextarea(id) {
-    return document.getElementById(id).value
-      .split('\n')
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
-  }
-
-  document.getElementById('f-generate').addEventListener('click', function () {
-    const category = document.getElementById('f-category').value;
-    const name = document.getElementById('f-name').value.trim();
-    const tag = document.getElementById('f-tag').value.trim();
-    const image = document.getElementById('f-image').value.trim();
-    const videos = linesFromTextarea('f-videos');
-    const memo = linesFromTextarea('f-memo');
-
-    if (!name || !image) {
-      alert('「パターン名」と「図解画像のファイル名」は必須です。');
-      return;
-    }
-
-    const videosStr = videos.length
-      ? '[\n' + videos.map(v => '        "' + jsEscape(v) + '"').join(',\n') + '\n      ]'
-      : '[]';
-    const memoStr = memo.length
-      ? '[\n' + memo.map(m => '        "' + jsEscape(m) + '"').join(',\n') + '\n      ]'
-      : '[]';
-
-    const code =
-      '    {\n' +
-      '      name: "' + jsEscape(name) + '",\n' +
-      '      tag: "' + jsEscape(tag) + '",\n' +
-      '      image: "' + jsEscape(image) + '",\n' +
-      '      videos: ' + videosStr + ',\n' +
-      '      memo: ' + memoStr + '\n' +
-      '    },';
-
-    const categoryLabels = {
-      kickin: 'キックイン', corner: 'コーナーキック',
-      clearance: 'クリアランス', freekick: 'フリーキック'
-    };
-
-    document.getElementById('f-output').textContent =
-      '// data.js の「' + categoryLabels[category] + '（' + category + ':）」の配列内、\n' +
-      '// 最後の要素の直後に、このブロックをそのまま貼り付けてください\n\n' + code;
-    document.getElementById('f-output-wrap').style.display = 'block';
-    document.getElementById('f-copied').style.display = 'none';
-  });
-
-  document.getElementById('f-copy').addEventListener('click', function () {
-    const text = document.getElementById('f-output').textContent;
-    const done = () => {
-      const msg = document.getElementById('f-copied');
-      msg.style.display = 'inline-block';
-      setTimeout(() => { msg.style.display = 'none'; }, 2500);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
-    } else {
-      fallbackCopy(text, done);
-    }
-  });
-
-  function fallbackCopy(text, done) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.focus();
-    ta.select();
-    try { document.execCommand('copy'); done(); } catch (e) { /* noop */ }
-    document.body.removeChild(ta);
-  }
 </script>
 
 </body>
