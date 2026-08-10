@@ -6,16 +6,20 @@
   自動的にサイトに反映されます（index.html は変更不要です）。
 
   【追加の手順】
-  1. 図解画像を assets/img/ フォルダに入れる（jpg / png）
-  2. 動画があれば assets/video/ フォルダに入れる（mp4）
+  ※ このサイトはフォルダ分けをせず、画像・動画・index.html・
+    data.js を全部同じ階層に置く仕様です（GitHubにアップロード
+    する際にフォルダ構造が崩れることがあるための対応です）。
+
+  1. 図解画像（jpg / png）を、このファイルと同じフォルダに入れる
+  2. 動画（mp4）があれば、同じくこのフォルダに直接入れる
   3. 下の該当カテゴリ（kickin / corner / clearance / freekick）の
      配列に、以下の形式で1件追加する
 
      {
        name: "パターン名（例: 横3）",
        tag: "①シリーズ など（無ければ空文字 "" でOK）",
-       image: "assets/img/ファイル名.jpg",
-       videos: ["assets/video/ファイル名.mp4"],  // 動画がなければ [] でOK
+       image: "ファイル名.jpg",
+       videos: ["ファイル名.mp4"],  // 動画がなければ [] でOK
        memo: [
          "メモ1行目",
          "メモ2行目"
@@ -32,12 +36,12 @@ const PLAYS = {
     {
       name: "横1",
       tag: "①シリーズ",
-      image: "assets/img/kickin-yoko1.jpg",
+      image: "kickin-yoko1.jpg",
       videos: [
-        "assets/video/kickin-yoko1-1.mp4",
-        "assets/video/kickin-yoko1-2.mp4",
-        "assets/video/kickin-yoko1-3.mp4",
-        "assets/video/kickin-yoko1-4.mp4"
+        "kickin-yoko1-1.mp4",
+        "kickin-yoko1-2.mp4",
+        "kickin-yoko1-3.mp4",
+        "kickin-yoko1-4.mp4"
       ],
       memo: [
         "全部ファー狙い。",
@@ -48,10 +52,10 @@ const PLAYS = {
     {
       name: "横2",
       tag: "②シリーズ",
-      image: "assets/img/kickin-yoko2.jpg",
+      image: "kickin-yoko2.jpg",
       videos: [
-        "assets/video/kickin-yoko2-1.mp4",
-        "assets/video/kickin-yoko2-2.mp4"
+        "kickin-yoko2-1.mp4",
+        "kickin-yoko2-2.mp4"
       ],
       memo: [
         "ブロック＆外撃ち＆コンテニュー狙い。",
@@ -61,9 +65,9 @@ const PLAYS = {
     {
       name: "三角1",
       tag: "①シリーズ",
-      image: "assets/img/kickin-sankaku1.jpg",
+      image: "kickin-sankaku1.jpg",
       videos: [
-        "assets/video/kickin-sankaku1-1.mp4"
+        "kickin-sankaku1-1.mp4"
       ],
       memo: [
         "全部ファー狙い。",
@@ -74,10 +78,10 @@ const PLAYS = {
     {
       name: "三角2",
       tag: "②シリーズ",
-      image: "assets/img/kickin-sankaku2.jpg",
+      image: "kickin-sankaku2.jpg",
       videos: [
-        "assets/video/kickin-sankaku2-1.mp4",
-        "assets/video/kickin-sankaku2-2.mp4"
+        "kickin-sankaku2-1.mp4",
+        "kickin-sankaku2-2.mp4"
       ],
       memo: [
         "ブロック＆外撃ち＆コンテニュー狙い。",
@@ -87,9 +91,9 @@ const PLAYS = {
     {
       name: "縦1",
       tag: "①シリーズ",
-      image: "assets/img/kickin-tate1.jpg",
+      image: "kickin-tate1.jpg",
       videos: [
-        "assets/video/kickin-tate1-1.mp4"
+        "kickin-tate1-1.mp4"
       ],
       memo: [
         "全部ファー狙い。",
@@ -100,9 +104,9 @@ const PLAYS = {
     {
       name: "縦2",
       tag: "②シリーズ",
-      image: "assets/img/kickin-tate2.jpg",
+      image: "kickin-tate2.jpg",
       videos: [
-        "assets/video/kickin-tate2-1.mp4"
+        "kickin-tate2-1.mp4"
       ],
       memo: [
         "ブロック＆外撃ち＆コンテニュー狙い。",
@@ -115,51 +119,51 @@ const PLAYS = {
     {
       name: "1-2",
       tag: "",
-      image: "assets/img/corner-1-2.jpg",
-      videos: ["assets/video/corner-1-2-1.mp4"],
+      image: "corner-1-2.jpg",
+      videos: ["corner-1-2-1.mp4"],
       memo: []
     },
     {
       name: "1-3",
       tag: "",
-      image: "assets/img/corner-1-3.jpg",
-      videos: ["assets/video/corner-1-3-1.mp4"],
+      image: "corner-1-3.jpg",
+      videos: ["corner-1-3-1.mp4"],
       memo: []
     },
     {
       name: "2-2",
       tag: "②シリーズ",
-      image: "assets/img/corner-2-2.jpg",
+      image: "corner-2-2.jpg",
       videos: [
-        "assets/video/corner-2-2-1.mp4",
-        "assets/video/corner-2-2-2.mp4",
-        "assets/video/corner-2-2-3.mp4"
+        "corner-2-2-1.mp4",
+        "corner-2-2-2.mp4",
+        "corner-2-2-3.mp4"
       ],
       memo: ["ニアカーテン、ニア外狙い。空いたらインサイド。"]
     },
     {
       name: "2-3",
       tag: "③シリーズ",
-      image: "assets/img/corner-2-3.jpg",
-      videos: ["assets/video/corner-2-3-1.mp4"],
+      image: "corner-2-3.jpg",
+      videos: ["corner-2-3-1.mp4"],
       memo: ["インサイドこじあけ狙い。外撃ちでなかなか入らない時用。"]
     },
     {
       name: "3-2",
       tag: "",
-      image: "assets/img/corner-3-2.jpg",
+      image: "corner-3-2.jpg",
       videos: [
-        "assets/video/corner-3-2-1.mp4",
-        "assets/video/corner-3-2-2.mp4",
-        "assets/video/corner-3-2-3.mp4"
+        "corner-3-2-1.mp4",
+        "corner-3-2-2.mp4",
+        "corner-3-2-3.mp4"
       ],
       memo: []
     },
     {
       name: "3-3",
       tag: "",
-      image: "assets/img/corner-3-3.jpg",
-      videos: ["assets/video/corner-3-3-1.mp4"],
+      image: "corner-3-3.jpg",
+      videos: ["corner-3-3-1.mp4"],
       memo: []
     }
   ],
@@ -168,10 +172,10 @@ const PLAYS = {
     {
       name: "3-0 / 3-1",
       tag: "",
-      image: "assets/img/clearance-3-1.jpg",
+      image: "clearance-3-1.jpg",
       videos: [
-        "assets/video/clearance-3-1-1.mp4",
-        "assets/video/clearance-3-1-2.mp4"
+        "clearance-3-1-1.mp4",
+        "clearance-3-1-2.mp4"
       ],
       memo: [
         "3-1のクリアランス。いずれもシンプルにピヴォに当てていくためのクリアランスです。3-1は特に後ろで回してても点取れるわけじゃないので、シンプルに相手一列にしてピヴォに当てていきましょう。",
@@ -184,8 +188,8 @@ const PLAYS = {
     {
       name: "3-2",
       tag: "",
-      image: "assets/img/clearance-3-2.jpg",
-      videos: ["assets/video/clearance-3-2-1.mp4"],
+      image: "clearance-3-2.jpg",
+      videos: ["clearance-3-2-1.mp4"],
       memo: [
         "フィクソのカットからのカーテン。",
         "フィクソはカーテンした後しっかり降りる。相手の3枚目を引きつける。",
@@ -197,8 +201,8 @@ const PLAYS = {
     {
       name: "3-3",
       tag: "",
-      image: "assets/img/clearance-3-3.jpg",
-      videos: ["assets/video/clearance-3-3-1.mp4"],
+      image: "clearance-3-3.jpg",
+      videos: ["clearance-3-3-1.mp4"],
       memo: [
         "右サイドの選手が旋回したあと、カーテンできる位置までしっかり降りる。",
         "場合によってはボランチっぽくピヴォあて。",
@@ -208,8 +212,8 @@ const PLAYS = {
     {
       name: "4-0",
       tag: "",
-      image: "assets/img/clearance-4-0.jpg",
-      videos: ["assets/video/clearance-4-0-1.mp4"],
+      image: "clearance-4-0.jpg",
+      videos: ["clearance-4-0-1.mp4"],
       memo: ["抜け切らないでしっかり下がる。"]
     }
   ],
