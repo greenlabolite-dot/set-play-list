@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セットプレー一覧 | ATLÉTICO SHINJUKU</title>
+<style>
+  :root {
+    --navy: #0f1b45;
+    --navy-deep: #080f2e;
+    --navy-mid: #1b2a63;
+    --blue-accent: #3b5bdb;
+    --paper: #f6f5f2;
+    --ink: #1c1f2b;
+    --muted: #6b7080;
+    --gold: #d8b04a;
+    --card-bg: #ffffff;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header.site-header {
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    color: #fff;
+    padding: 40px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 2px, transparent 2px, transparent 46px);
+    pointer-events: none;
+  }
+  .crest {
+    width: 66px; height: 66px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+    position: relative;
+  }
+  .site-header .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 0 0 6px;
+    position: relative;
+  }
+  .site-header h1 {
+    font-size: clamp(26px, 6vw, 38px);
+    margin: 0 0 6px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  .site-header p.sub {
+    margin: 0;
+    color: rgba(255,255,255,0.7);
+    font-size: 13.5px;
+    position: relative;
+  }
+
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    background: var(--navy-deep);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs a {
+    flex: 0 0 auto;
+    padding: 14px 18px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  nav.tabs a:hover { color: #fff; }
+  nav.tabs a.active { color: #fff; border-color: var(--gold); }
+
+  main { max-width: 1080px; margin: 0 auto; padding: 0 16px 80px; }
+
+  section.category { padding-top: 40px; scroll-margin-top: 54px; }
+  .cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+  .cat-head .cat-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--navy);
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .cat-head h2 {
+    font-size: 22px;
+    margin: 0;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .cat-desc {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 10px 0 22px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+  }
+  .grid.grid-wide {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15,27,69,0.06), 0 8px 20px -12px rgba(15,27,69,0.25);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(15,27,69,0.06);
+  }
+  .card-media {
+    background: #e7edf6;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+  }
+  .card-media--tall { aspect-ratio: 3/4; background: #cfe0f0; }
+  .card-media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body { padding: 14px 16px 18px; }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .card-head h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+  .badge-series {
+    background: rgba(59,91,219,0.1);
+    color: var(--blue-accent);
+  }
+
+  .memo {
+    font-size: 13px;
+    color: #3a3f52;
+    background: #f4f6fb;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+  .memo p { margin: 0 0 6px; }
+  .memo p:last-child { margin-bottom: 0; }
+  .memo-empty {
+    color: var(--muted);
+    background: repeating-linear-gradient(135deg, #f4f6fb, #f4f6fb 8px, #eef1f8 8px, #eef1f8 16px);
+  }
+  .memo-long p { margin-bottom: 10px; }
+  .memo-long p:first-child {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .video-section { margin-top: 4px; }
+  .video-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin: 0 0 8px;
+  }
+  .video-strip {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .video-strip::-webkit-scrollbar { height: 5px; }
+  .video-strip::-webkit-scrollbar-thumb { background: #d7dce8; border-radius: 10px; }
+  .video-item { flex: 0 0 auto; width: 160px; }
+  .video-item video {
+    width: 160px;
+    height: 90px;
+    border-radius: 8px;
+    background: #000;
+    display: block;
+  }
+  .video-item .video-num {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin: 4px 2px 0;
+  }
+  .card-wide .video-item, .card-wide .video-item video {
+    width: 200px; height: 112px;
+  }
+
+  .placeholder-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: #eef1f8;
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; }
+    .card-body { padding: 12px 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="crest" src="assets/img/crest.png" alt="ATLÉTICO SHINJUKU クラブエンブレム">
+  <p class="eyebrow">ATLÉTICO SHINJUKU</p>
+  <h1>セットプレー一覧</h1>
+  <p class="sub">キックイン・コーナーキック・クリアランス・フリーキック</p>
+</header>
+
+<nav class="tabs" id="tabs">
+  <a href="#kickin" class="active">キックイン</a>
+  <a href="#corner">コーナーキック</a>
+  <a href="#clearance">クリアランス</a>
+  <a href="#freekick">フリーキック</a>
+</nav>
+
+<main>
+  <section class="category" id="kickin">
+    <div class="cat-head"><span class="cat-num">01</span><h2>キックイン</h2></div>
+    <p class="cat-desc">横・三角・縦、それぞれ①シリーズ（ファー狙い）と②シリーズ（外撃ち＆コンテニュー狙い）の2パターンずつ。</p>
+    <div class="grid" id="grid-kickin"></div>
+  </section>
+
+  <section class="category" id="corner">
+    <div class="cat-head"><span class="cat-num">02</span><h2>コーナーキック</h2></div>
+    <p class="cat-desc">配置人数の組み合わせ別に6パターン。「◯-◯」は前後の人数配置を表しています。</p>
+    <div class="grid" id="grid-corner"></div>
+  </section>
+
+  <section class="category" id="clearance">
+    <div class="cat-head"><span class="cat-num">03</span><h2>クリアランス</h2></div>
+    <p class="cat-desc">自陣からのビルドアップパターン。配置人数が多いほど後方の枚数が厚くなります。</p>
+    <div class="grid grid-wide" id="grid-clearance"></div>
+  </section>
+
+  <section class="category" id="freekick">
+    <div class="cat-head"><span class="cat-num">04</span><h2>フリーキック</h2></div>
+    <p class="cat-desc" id="freekick-desc" style="display:none;">フリーキック時のパターン一覧です。</p>
+    <div class="grid" id="grid-freekick"></div>
+    <div class="placeholder-section" id="freekick-empty">準備中です。パターンが決まり次第、追加していきます。</div>
+  </section>
+</main>
+
+<footer>ATLÉTICO SHINJUKU セットプレー一覧</footer>
+
+<script src="data.js"></script>
+<script>
+  function memoHtml(memoList, longStyle) {
+    if (!memoList || memoList.length === 0) {
+      return '<div class="memo memo-empty">メモは未記入です</div>';
+    }
+    const cls = longStyle ? 'memo memo-long' : 'memo';
+    return '<div class="' + cls + '">' + memoList.map(m => '<p>' + m + '</p>').join('') + '</div>';
+  }
+
+  function videosHtml(videoList, wide) {
+    if (!videoList || videoList.length === 0) return '';
+    const items = videoList.map((v, i) => {
+      return '<div class="video-item">' +
+        '<video controls preload="none" playsinline src="' + v + '"></video>' +
+        (videoList.length > 1 ? '<div class="video-num">クリップ ' + (i + 1) + '</div>' : '') +
+        '</div>';
+    }).join('');
+    return '<div class="video-section">' +
+      '<p class="video-label">実戦映像（' + videoList.length + '）</p>' +
+      '<div class="video-strip">' + items + '</div>' +
+      '</div>';
+  }
+
+  function cardHtml(item, opts) {
+    opts = opts || {};
+    const wide = !!opts.wide;
+    const tagBadge = item.tag ? '<span class="badge badge-series">' + item.tag + '</span>' : '';
+    return '<article class="card' + (wide ? ' card-wide' : '') + '">' +
+      '<div class="card-media' + (wide ? ' card-media--tall' : '') + '">' +
+        '<img src="' + item.image + '" alt="' + item.name + ' フォーメーション図" loading="lazy">' +
+      '</div>' +
+      '<div class="card-body">' +
+        '<div class="card-head">' + tagBadge + '<h3>「' + item.name + '」</h3></div>' +
+        memoHtml(item.memo, wide) +
+        videosHtml(item.videos, wide) +
+      '</div>' +
+    '</article>';
+  }
+
+  function renderCategory(containerId, items, wide) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = items.map(it => cardHtml(it, { wide: wide })).join('');
+  }
+
+  renderCategory('grid-kickin', PLAYS.kickin, false);
+  renderCategory('grid-corner', PLAYS.corner, false);
+  renderCategory('grid-clearance', PLAYS.clearance, true);
+
+  if (PLAYS.freekick && PLAYS.freekick.length > 0) {
+    document.getElementById('freekick-empty').style.display = 'none';
+    document.getElementById('freekick-desc').style.display = 'block';
+    renderCategory('grid-freekick', PLAYS.freekick, false);
+  }
+
+  const links = document.querySelectorAll('nav.tabs a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll() {
+    let idx = 0;
+    const y = window.scrollY + 80;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === idx));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
