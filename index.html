@@ -304,6 +304,20 @@
     cursor: pointer;
   }
   #f-generate:hover, #f-copy:hover { background: var(--navy-mid); }
+
+  .cta-button {
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--blue-accent);
+    border: none;
+    border-radius: 8px;
+    padding: 13px 22px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cta-button:hover { background: #2f4bc4; }
   #f-output {
     background: var(--navy-deep);
     color: #dfe6f5;
@@ -350,6 +364,7 @@
   <a href="#corner">コーナーキック</a>
   <a href="#clearance">クリアランス</a>
   <a href="#freekick">フリーキック</a>
+  <a href="#send-video">動画を送る</a>
   <a href="#add-form">＋ パターンを追加</a>
 </nav>
 
@@ -379,8 +394,24 @@
     <div class="placeholder-section" id="freekick-empty">準備中です。パターンが決まり次第、追加していきます。</div>
   </section>
 
+  <section class="category" id="send-video">
+    <div class="cat-head"><span class="cat-num">05</span><h2>動画を送る</h2></div>
+    <p class="cat-desc">
+      実戦映像を撮った方は、こちらのフォームから送ってください。
+      送っていただいた動画は、あとでサイトに追加します。
+    </p>
+    <div class="form-card">
+      <p style="margin:0 0 16px; font-size:14px; color:var(--ink);">
+        フォームが開いたら、パターン名やカテゴリも合わせて入力してください。
+      </p>
+      <a class="cta-button" href="https://forms.gle/6DJ4TptLAtz4M92E8" target="_blank" rel="noopener">
+        動画を送るフォームを開く ↗
+      </a>
+    </div>
+  </section>
+
   <section class="category" id="add-form">
-    <div class="cat-head"><span class="cat-num">＋</span><h2>パターンを追加</h2></div>
+    <div class="cat-head"><span class="cat-num">06</span><h2>パターンを追加</h2></div>
     <p class="cat-desc">
       ここで入力すると、<code>data.js</code> にそのまま貼り付けられるコードが自動でできます。
       画像・動画ファイルは、あらかじめ他のファイルと同じ場所（GitHubリポジトリの一番上の階層）に
